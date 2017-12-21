@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "name": "sysinner/website",
+    "version": "0.0.16"
+  },
+  "srvname": "si",
+  "status": 1,
+  "title": "Sysinner WebSite",
+  "nodeModels": [
+    {
+      "meta": {
+        "name": "page"
+      },
+      "title": "Page",
+      "fields": [
+        {
+          "name": "page",
+          "type": "text",
+          "length": "0",
+          "attrs": [
+            {
+              "key": "ui_rows",
+              "value": "18"
+            },
+            {
+              "key": "formats",
+              "value": "html,md"
+            }
+          ],
+          "title": "Page"
+        }
+      ],
+      "extensions": {
+        "access_counter": true,
+        "permalink": "name"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "name": "page_view",
+      "datax": [
+        {
+          "name": "page_entry",
+          "type": "node.entry",
+          "query": {
+            "table": "page",
+            "limit": 1
+          },
+          "cache_ttl": 3600000
+        }
+      ]
+    },
+    {
+      "name": "html_view"
+    }
+  ],
+  "router": {
+    "routes": [
+      {
+        "path": "/page/:page_entry_id",
+        "dataAction": "page_view",
+        "template": "page_entry_base.tpl"
+      },
+      {
+        "path": "/inpack",
+        "dataAction": "html_view",
+        "template": "page_entry_inpack.tpl"
+      },
+      {
+        "path": "/app",
+        "dataAction": "html_view",
+        "template": "page_entry_app.tpl"
+      }
+    ]
+  }
+}
