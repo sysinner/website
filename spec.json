@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "sysinner/website",
-    "version": "0.0.16"
+    "version": "0.0.17"
   },
   "srvname": "si",
   "status": 1,
@@ -24,7 +24,7 @@
             },
             {
               "key": "formats",
-              "value": "html,md"
+              "value": "shtml,md"
             }
           ],
           "title": "Page"
