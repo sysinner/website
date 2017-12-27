@@ -141,26 +141,6 @@
   </td>
 </tr>
 
-
-<tr>
-  <td class="row_title">Logo</td>
-  <td>
-    <table width="80%">
-      <tr>
-        <td width="40%">
-          <img class="logo_ico" src="{[=it._api_url]}/pkg-info/ico?name={[=it.meta.name]}&type=11&size=96" width="96", height="96">
-          1 x 1
-        </td>
-        <td>
-          <img class="logo_ico" src="{[=it._api_url]}/pkg-info/ico?name={[=it.meta.name]}&type=21&size=192" width="192", height="96">
-          2 x 1
-        </td>
-      </tr>
-    </table>
-  </td>
-</tr>
-
-
 {[? it.project.homepage]}
 <tr>
   <td class="row_title">Homepage</td>
@@ -186,8 +166,7 @@
       <thead><tr>
         <th>Version</th>
         <th>Release</th>
-        <th>Dist</th>
-        <th style="text-align:center">Arch</th>
+        <th style="text-align:center">Dist.Arch</th>
         <th style="text-align:right">Size</th>
       </tr></thead>
       <tbody>
@@ -195,8 +174,7 @@
       <tr>
         <td>{[=v.version.version]}</td>
         <td>{[=v.version.release]}</td>
-        <td>{[=v.version.dist]}</td>
-        <td align="center">{[=v.version.arch]}</td>
+        <td align="center">{[=v.version.dist]}.{[=v.version.arch]}</td>
         <td align="right">{[=sijs.UtilResSizeFormat(v.size, 2)]}</td>
       </tr>
       {[~]}
