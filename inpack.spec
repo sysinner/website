@@ -1,6 +1,6 @@
 [project]
 name = sysinner-website
-version = 0.1.0
+version = 0.1.1
 vendor = sysinner.com
 homepage = https://www.sysinner.com
 groups = app/other
