@@ -35,7 +35,7 @@
 
 <!-- start/ -->
 <div class="pt_index_frame_dark pt_node_content pt_bgimg_hexagons">
-<div class="container" style="padding: 20px 10px;text-align:center;">
+<div class="container" style="_padding: 20px 10px;text-align:center;">
   <div>
     <div class="_pnc_title">Package Center</div>
     <div>
@@ -69,12 +69,11 @@
 {[~it.items :v]}
 <li class="ips-pkginfo-tile" onclick="sijs.InPackInfoView('{[=v.meta.name]}')">
   <div class="subtitle ct-content" id="status-{[=v.meta.name]}"
-    style="background: url('{[=it._api_url]}/pkg-info/ico?name={[=v.meta.name]}&type=21&size=200') no-repeat center top; background-size: 200px 100px;">
+    style="background: url('{[=it._api_url]}/pkg-info/icon?name={[=v.meta.name]}&type=21&size=200') no-repeat center top; background-size: 200px 100px;">
   </div>
   <div class="status">
     <div class="title">{[=v.meta.name]}</div>
     Version: <strong>{[=v.last_version]}</strong> &nbsp;&nbsp;
-    Updated: <strong>{[=l4i.MetaTimeParseFormat(v.meta.updated, "Y-m-d")]}</strong>
   </div>
 </li>
 {[~]}
@@ -97,7 +96,7 @@
   font-weight: bold;
   text-align: right;
 }
-.ips_pkgview_p5 .logo_ico {
+.ips_pkgview_p5 .logo_icon {
   padding: 2px;
   outline: #ccc 1px solid;
 }
@@ -119,13 +118,6 @@
 <tr>
   <td class="row_title">Maintainer</td>
   <td>{[=it.meta.user]}</td>
-</tr>
-
-<tr>
-  <td class="row_title">Updated</td>
-  <td>
-    {[=l4i.MetaTimeParseFormat(it.meta.updated, "Y-m-d")]}
-  </td>
 </tr>
 
 <tr>

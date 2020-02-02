@@ -1,6 +1,16 @@
 var sijs = {
     inpack_api: "/ips/p1/",
     in_api: "/in/p1/",
+    inCpAppSpec_deploySysStateful: 1,
+    inCpAppSpec_deploySysStateless: 2,
+    inCpAppSpec_deploySysStates: [{
+        title: "Stateful",
+        value: 1,
+    }, {
+        title: "Stateless",
+        value: 2,
+    }],
+
 };
 
 sijs.inpack_apipath = function(path) {
@@ -206,7 +216,7 @@ sijs.InAppSpecListDataRefresh = function(tplid) {
                 if (!rsj.items[i].meta.name) {
                     rsj.items[i].meta.name = "";
                 }
-                
+
                 if (!rsj.items[i].depends) {
                     rsj.items[i].depends = [];
                 }
@@ -252,54 +262,16 @@ sijs.InAppSpecInfo = function(id) {
                 rsj.depends = [];
             }
 
+            if (!rsj.dep_remotes) {
+                rsj.dep_remotes = [];
+            }
+
             if (!rsj.packages) {
                 rsj.packages = [];
             }
 
-            if (!rsj.executors) {
-                rsj.executors = [];
-            }
-
-            for (var i in rsj.executors) {
-
-                if (!rsj.executors[i].exec_start) {
-                    rsj.executors[i].exec_start = "";
-                }
-
-                if (!rsj.executors[i].exec_stop) {
-                    rsj.executors[i].exec_stop = "";
-                }
-
-                if (!rsj.executors[i].priority) {
-                    rsj.executors[i].priority = 0;
-                }
-
-                if (!rsj.executors[i].plan) {
-                    rsj.executors[i].plan = {
-                        on_boot: true,
-                        on_boot_selected: "selected",
-                    }
-                } else {
-
-                    if (rsj.executors[i].plan.on_boot == true) {
-                        rsj.executors[i].plan.on_boot_selected = "selected";
-                    } else if (rsj.executors[i].plan.on_tick > 0) {
-                        rsj.executors[i].plan.on_tick_selected = "selected";
-                    }
-                }
-            }
-
-            if (!rsj.service_ports) {
-                rsj.service_ports = [];
-            }
-
-            for (var i in rsj.service_ports) {
-                if (!rsj.service_ports[i].name) {
-                    rsj.service_ports[i].name = "";
-                }
-                if (!rsj.service_ports[i].box_port) {
-                    rsj.service_ports[i].box_port = "";
-                }
+            if (!rsj.vcs_repos) {
+                rsj.vcs_repos = [];
             }
 
             for (var i in rsj.depends) {
@@ -308,10 +280,55 @@ sijs.InAppSpecInfo = function(id) {
                 }
             }
 
+            for (var i in rsj.dep_remotes) {
+                if (!rsj.dep_remotes[i].name) {
+                    rsj.dep_remotes[i].name = "";
+                }
+                if (!rsj.dep_remotes[i].configs) {
+                    rsj.dep_remotes[i].configs = [];
+                }
+            }
+
+            if (!rsj.exp_deploy) {
+                rsj.exp_deploy = {};
+            }
+            if (!rsj.exp_deploy.rep_min) {
+                rsj.exp_deploy.rep_min = 1;
+                rsj.exp_deploy.rep_max = 1;
+            }
+            if (!rsj.exp_deploy.failover_time) {
+                rsj.exp_deploy.failover_time = 300;
+            }
+            if (!rsj.exp_deploy.failover_num_max) {
+                rsj.exp_deploy.failover_num_max = 0;
+            } else if (rsj.exp_deploy.failover_num_max > 0) {
+                rsj.exp_deploy._failover_enable = true;
+            }
+            if (!rsj.exp_deploy.failover_rate_max) {
+                rsj.exp_deploy.failover_rate_max = 0;
+            } else if (rsj.exp_deploy.failover_rate_max > 0) {
+                rsj.exp_deploy._failover_enable = true;
+            }
+
+            if (!rsj.exp_deploy.sys_state) {
+                rsj.exp_deploy.sys_state = sijs.inCpAppSpec_deploySysStateful;
+            }
+            for (var i in sijs.inCpAppSpec_deploySysStates) {
+                if (sijs.inCpAppSpec_deploySysStates[i].value == rsj.exp_deploy.sys_state) {
+                    rsj.exp_deploy._sys_state = sijs.inCpAppSpec_deploySysStates[i].title;
+                    break;
+                }
+            }
+            if (!rsj.exp_deploy._sys_state) {
+                rsj.exp_deploy._sys_state = "";
+            }
+            rsj.exp_res._cpu_min = (rsj.exp_res.cpu_min / 10).toFixed(1);
+
+
             l4iModal.Open({
-                title: "Spec Information : "+ rsj.meta.id,
-                width: 1000,
-                height: 750,
+                title: "AppSpec Information : " + rsj.meta.id,
+                width: 1200,
+                height: 800,
                 tplid: "incp-appspec-info-view-tpl",
                 data: rsj,
                 buttons: [{
@@ -319,9 +336,9 @@ sijs.InAppSpecInfo = function(id) {
                     title: "Close",
                 }],
                 callback: function() {
-                    hp.CodeRender({
-                        theme: "monokai"
-                    });
+                    // hp.CodeRender({
+                    //     theme: "monokai"
+                    // });
                 },
             });
         });
@@ -342,7 +359,7 @@ sijs.InAppSpecDownload = function(id) {
     if (!id) {
         return;
     }
-    window.open(sijs.in_api + "app-spec/entry?id=" + id + "&download=true&fmt_json_indent=true", "Download");
+    window.open(sijs.in_api + "app-spec/entry?id=" + id + "&download=true&ct=toml", "Download");
 }
 
 sijs.UtilResSizeFormat = function(size, tofix) {

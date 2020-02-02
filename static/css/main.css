@@ -140,3 +140,78 @@
   padding: 10px;
   height: auto !important;
 }
+
+.incp-formtable,
+.incp-formtable table {
+  width: 100%;
+}
+
+.incp-formtable table.valign-middle td,
+.incp-formtable table.valign-middle th {
+  vertical-align: middle !important;
+}
+
+.incp-formtable-row-line,
+.incp-formtable-tr-line {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.incp-formtable-tr-line:last-child {
+  border-bottom: 0 !important;
+}
+
+.incp-formtable>tbody>tr {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.incp-formtable>tbody>tr:last-child {
+  border-bottom: 0;
+}
+
+
+.incp-formtable>tbody>tr>td {
+  padding: 10px 20px 10px 0;
+  vertical-align: top;
+}
+
+.incp-formtable>tbody>tr>td:last-child {
+  padding-right: 0;
+}
+
+.incp-formtable.incp-formtable-title-right>tbody>tr>td:first-child {
+  text-align: right;
+}
+
+.incp-formtable>tbody>tr>td:first-child {
+  font-weight: bold;
+}
+
+.incp-formtable tbody>tr.hover:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.incp-formtable table td,
+.incp-formtable table th {
+  padding: 2px 30px 2px 0;
+}
+
+.incp-formtable table td:last-child,
+.incp-formtable table th:last-child {
+  padding-right: 0 !important;
+}
+
+.incp-formtable-space-x0050 td,
+.incp-formtable-space-x0050 th {
+  padding: 0.50rem 1.00rem 0.50rem 0 !important;
+}
+
+.incp-formtable-space-x0100 td,
+.incp-formtable-space-x0100 th {
+  padding: 1.00rem 2.00rem 1.00rem 0 !important;
+}
+
+.incp-formtable .input-group {
+  margin-bottom: 0 !important;
+}
+

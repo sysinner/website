@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "sysinner/website",
-    "version": "0.0.17"
+    "version": "0.0.19"
   },
   "srvname": "si",
   "status": 1,
@@ -11,8 +11,15 @@
       "meta": {
         "name": "page"
       },
+      "modname": "sysinner/website",
       "title": "Page",
       "fields": [
+        {
+          "name": "title",
+          "type": "string",
+          "length": "100",
+          "title": "Title"
+        },
         {
           "name": "page",
           "type": "text",

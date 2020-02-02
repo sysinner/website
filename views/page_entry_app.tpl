@@ -34,7 +34,7 @@
 
 <!-- start/ -->
 <div class="pt_index_frame_dark pt_node_content pt_bgimg_hexagons">
-<div class="container" style="padding: 20px 10px;text-align:center;">
+<div class="container" style="_padding: 20px 10px;text-align:center;">
   <div>
     <div class="_pnc_title">App Spec Center</div>
     <div>
@@ -74,7 +74,7 @@
   <td>{[=v._ipm_num]}</td>
   <td>{[=v._executor_num]}</td>
   <td align="right">
-    <button class="btn btn-default btn-xsmall" onclick="sijs.InAppSpecInfo('{[=v.meta.id]}')">
+    <button class="btn btn-primary btn-xsmall" onclick="sijs.InAppSpecInfo('{[=v.meta.id]}')">
       Detail
     </button>
   </td>
@@ -86,58 +86,60 @@
 
 
 <script id="incp-appspec-info-view-tpl" type="text/html">
-{[if (it.meta.name && it.meta.name.length > 0) {]}
-<div class="l4i-form-group">
-  <label>Name</label>
-  <p>{[=it.meta.name]}</p>
-</div>
-{[}]}
+<table class="incp-formtable">
+<tbody>
+<tr>
+  <td width="200px">ID</td>
+  <td>{[=it.meta.id]}</td>
+</tr>
 
-{[? it.description]}
-<div class="l4i-form-group">
-  <label>Description</label>
-  <p>{[=it.description]}</p>
-</div>
+{[? it.meta.name]}
+<tr>
+  <td>Name</td>
+  <td>{[=it.meta.name]}</td>
+</tr>
 {[?]}
 
-<div class="l4i-form-group">
-  <label>Resource Requirements</label>
+{[? it.description]}
+<tr>
+  <td>Description</td>
+  <td>{[=it.description]}</td>
+</tr>
+{[?]}
 
-  <div>
-    <table width="100%" class="_table_right_space">
-    <tr>
-      <td>
-        <div>CPU units (minimum)</div>
-        <div class="input-group">
-          {[=it.exp_res.cpu_min]} m
-        </div>
-      </td>
-      <td>
-        <div>Memory Size (minimum)</div>
-        <div class="input-group">
-          {[=sijs.UtilResSizeFormat(it.exp_res.mem_min)]}
-        </div>
-      </td>
-      <td>
-        <div>System Volume Size (minimum)</div>
-        <div class="input-group">
-          {[=sijs.UtilResSizeFormat(it.exp_res.vol_min, 1)]}
-        </div>
-      </td>
-    </tr>
+{[if (it.packages.length > 0) {]}
+<tr>
+  <td>Import Package</td>
+  <td id="incp-app-specset-ipmls">
+    <table>
+      <thead><tr>
+        <th>Name</th>
+        <th>Version</th>
+        <th>Volume</th>
+      </tr></thead>
+      <tbody>
+      {[~it.packages :v]}
+      <tr id="incp-app-specset-ipmls-name{[=v.name]}">
+        <td>{[=v.name]}</td>
+        <td>{[=v.version]}</td>
+        <td>/usr/sysinner/{[=v.name]}/{[=v.version]}</td>
+      </tr>
+      {[~]}
+      </tbody>
     </table>
-  </div>
-</div>
+  </td>
+</tr>
+{[}]}
+
 
 {[if (it.depends.length > 0) {]}
-<div class="l4i-form-group">
-  <label>Depends</label>
-
-  <div id="incp-app-specset-depls">
-    <table class="table table-hover">
+<tr>
+  <td>Import AppSpec</td>
+  <td id="incp-app-specset-depls">
+    <table>
       <thead><tr>
         <th>ID</th>
-        <th></th>
+        <th>Name</th>
         <th>Version</th>
       </tr></thead>
       <tbody>
@@ -150,105 +152,82 @@
       {[~]}
       </tbody>
     </table>
-  </div>
-</div>
+  </td>
+</tr>
 {[}]}
 
 
-{[if (it.service_ports.length > 0) {]}
-<div class="l4i-form-group">
-  <label>Service Ports</label>
-
-  <div>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Box Port</th>
-        <tr>
-      </thead>
-      <tbody>
-        {[~it.service_ports :vp]}
-        <tr>
-          <td>{[=vp.name]}</td>
-          <td>{[=vp.box_port]}</td>
-        </tr>
-        {[~]}
-      </tbody>
-    </table>
-  </div>
-</div>
-{[}]}
-
-{[if (it.packages.length > 0) {]}
-<div class="l4i-form-group">
-  <label>Packages</label>
-
-  <div id="incp-app-specset-ipmls">
-    <table class="table table-hover">
+{[if (it.dep_remotes && it.dep_remotes.length > 0) {]}
+<tr>
+  <td>Remotely dependent AppSpec</td>
+  <td id="incp-app-specset-depremotes">
+    <table>
       <thead><tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Version</th>
-        <th>Release</th>
-        <th>Dist / Arch</th>
+        <th>Configs</th>
       </tr></thead>
       <tbody>
-      {[~it.packages :v]}
-      <tr id="incp-app-specset-ipmls-name{[=v.name]}">
+      {[~it.dep_remotes :v]}
+      <tr id="incp-app-specset-depremotes-id{[=v.id]}">
+        <td>{[=v.id]}</td>
         <td>{[=v.name]}</td>
         <td>{[=v.version]}</td>
-        <td>{[=v.release]}</td>
-        <td>{[=v.dist]} / {[=v.arch]}</td>
+        <td>{[? v.configs]}{[=v.configs.join(", ")]}{[?]}</td>
       </tr>
       {[~]}
       </tbody>
     </table>
-  </div>
-</div>
+  </td>
+</tr>
 {[}]}
 
-{[if (it.executors.length > 0) {]}
-<div class="l4i-form-group">
-  <label>Executors</label>
+<tr>
+  <td>Minimum Requirements</td>
+  <td>
+    <table>
+      <thead><tr>
+        <th width="33%">CPU</th>
+        <th width="33%">Memory</th>
+        <th>System Volume</th>
+      </tr></thead>
+      <tbody>
+      <tr id="incp-app-specset-depls-id{[=v.id]}">
+        <td>{[=it.exp_res._cpu_min]} cores</td>
+        <td>{[=it.exp_res.mem_min]} MB</td>
+        <td>{[=it.exp_res.vol_min]} GB</td>
+      </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
 
-  <div id="incp-app-specset-executorls">
-    {[~it.executors :v]}
-    <div class="incp-app-specset-gn-box">
-      <div class="head">
-        <span class="title">{[=v.name]}</span>
-      </div>
-      <div class="body">
-        <table width="100%">
-          <tbody>
-          <tr>
-            <td width="120">ExecStart</td>
-            <td><pre><code class="language-shell">{[=v.exec_start.trim()]}</code></pre></td>
-          </tr>
-          {[if (v.exec_stop.trim().length > 0) {]}
-          <tr>
-            <td>ExecStop</td>
-            <td><pre><code class="language-shell">{[=v.exec_stop.trim()]}</code></pre></td>
-          </tr>
-          {[}]}
-          <tr>
-            <td>Plan</td>
-            <td>
-              {[if (v.plan.on_boot) {]}
-                On Boot
-              {[}]}
-              {[if (v.plan.on_tick > 0) {]}
-                On Tick {[=v.plan.on_tick]}
-              {[}]}
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    {[~]}
-  </div>
-</div>
-{[}]}
+<tr>
+  <td>Deploy Requirements</td>
+  <td>
+    <table>
+      <thead><tr>
+        <th width="33%">Number of Replicas</th>
+        <th width="33%">State</th>
+        <th></th>
+      </tr></thead>
+      <tbody>
+      <tr>
+        <td>Min/Max: {[=it.exp_deploy.rep_min]} / {[=it.exp_deploy.rep_max]}</td>
+        <td>{[=it.exp_deploy._sys_state]}</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </td>
+</tr>
+
+
+
+</tbody>
+</table>
+
 
 </script>
 

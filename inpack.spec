@@ -1,6 +1,6 @@
 [project]
 name = sysinner-website
-version = 0.1.1
+version = 0.1.4
 vendor = sysinner.com
 homepage = https://www.sysinner.com
 groups = app/other
@@ -16,16 +16,16 @@ static/
 
 
 %js_compress
-static/
+#static/
 
 
 %css_compress
-static/
+#static/
 
 
 %html_compress
 
 
 %png_compress
-static/
+#static/
 
