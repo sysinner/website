@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-{{pagelet . "core/general" "bs4/html-header.tpl"}}
+{{pagelet . "core/general" "v2/html-header.tpl"}}
 <script src="/hp/-/static/si/js/main.js?v={{.sys_version_sign}}"></script>
 <link rel="stylesheet" href="{{HttpSrvBasePath "hp/-/static/pt/css/main.css"}}?v={{.sys_version_sign}}" type="text/css">
-<link rel="stylesheet" href="{{HttpSrvBasePath "hp/~/open-iconic/font/css/open-iconic-bootstrap.css"}}?v={{.sys_version_sign}}" type="text/css">
 <link rel="stylesheet" href="{{HttpSrvBasePath "hp/-/static/si/css/main.css"}}?v={{.sys_version_sign}}" type="text/css">
-<body>
-{{pagelet . "core/general" "bs4/nav-header.tpl" "topnav"}}
+<body id="hp-body">
+{{pagelet . "core/general" "v2/nav-header.tpl" "topnav"}}
 
 <style>
 .pt_node_content ._pnc_title {
@@ -33,7 +32,7 @@
 </style>
 
 <!-- start/ -->
-<div class="pt_index_frame_dark pt_node_content pt_bgimg_hexagons">
+<div class="hp-container-full pt_index_frame_dark pt_node_content pt_bgimg_hexagons">
 <div class="container" style="_padding: 20px 10px;text-align:center;">
   <div>
     <div class="_pnc_title">App Spec Center</div>
@@ -45,7 +44,7 @@
 </div>
 <!-- /start -->
 
-<div class="pt_index_frame_dark_light">
+<div class="hp-container-full pt_index_frame_dark_light">
 <div class="container pt_node_content" style="padding: 20px 0;">
   <div id="incp-app-specls-alert" class="alert">loading</div>
   <div class="incp-div-light" id="incp-app-specls"></div>
@@ -54,13 +53,12 @@
 
 
 <script id="incp-app-specls-tpl" type="text/html"> 
-<table class="table table-hover">
+<table class="table is-fullwidth is-hoverable">
 <thead>
   <tr>
     <th>ID</th>
     <th>Name</th>
     <th>Packages</th>
-    <th>Executors</th>
     <th></th>
   </tr>
 </thead>
@@ -72,9 +70,8 @@
   </td>
   <td>{[=v.meta.name]}</td>
   <td>{[=v._ipm_num]}</td>
-  <td>{[=v._executor_num]}</td>
   <td align="right">
-    <button class="btn btn-primary btn-xsmall" onclick="sijs.InAppSpecInfo('{[=v.meta.id]}')">
+    <button class="button is-dark xsmall" onclick="sijs.InAppSpecInfo('{[=v.meta.id]}')">
       Detail
     </button>
   </td>
@@ -237,7 +234,7 @@ window.onload_hooks.push(function() {
 });
 </script>
 
-{{pagelet . "core/general" "footer.tpl"}}
+{{pagelet . "core/general" "v2/footer.tpl"}}
     
 {{pagelet . "core/general" "html-footer.tpl"}}
 </body>

@@ -3,86 +3,26 @@
   font-size: 1em;
 }
 
-#ips-infols ul {
-  padding: 0;
-  margin: 0;
+.inpack-list-item-frame {
+  width: auto;
+  min-width: 300px;
 }
 
-#ips-infols a.item_title {
-  font-size: 1.2em;
-  line-height: 100%;
-}
-
-.ips-pkginfo-tiles {
-  left: 0px;
-  right: 0px;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-}
-
-.ips-pkginfo-tile {
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-  cursor: pointer;
-  background-color: #ECF0F1;
-  box-shadow: inset 0px 0px 1px #FFFFCC;
-  width: 300px;
-  height: 170px;
-  margin: 0 10px 20px 10px;
-  text-align: center;
-  flex: 1 0 300px;
-  box-sizing: border-box;
-}
-
-.ips-pkginfo-tile:empty {
-  height: 0;
-  border: none;
-}
-
-.ips-pkginfo-tile:hover {
+.inpack-list-item-box:hover {
   outline: #BDC3C7 solid 3px;
+  cursor: pointer;
 }
 
-.ips-pkginfo-tile .ct-content {
-  text-align: center;
-  font-size: 26px;
-  font-weight: bold;
-  padding: 10px;
-  height: 100px;
-  text-align: center;
+.inpack-list-item-box .card-image {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-.ips-pkginfo-tile .ct-label {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 18px;
-}
-
-.ips-pkginfo-tile .status {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  padding: 10px;
-  font-size: 12px;
-  background-color: rgba(0, 0, 0, 0.07);
+.inpack-list-item-box .inpack-list-item-box-info {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   text-align: center;
 }
-
-.ips-pkginfo-tile .title {
-  font-size: 18px;
-  padding: 2px 0;
-  font-weight: bold;
-  line-height: 100%;
-}
-
 
 .ips-form-checkbox {
   margin: 0 20px 0 0;
@@ -214,4 +154,3 @@
 .incp-formtable .input-group {
   margin-bottom: 0 !important;
 }
-

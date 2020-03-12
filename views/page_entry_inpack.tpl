@@ -1,40 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-{{pagelet . "core/general" "bs4/html-header.tpl"}}
+{{pagelet . "core/general" "v2/html-header.tpl"}}
 <script src="/hp/-/static/si/js/main.js?v={{.sys_version_sign}}"></script>
 <link rel="stylesheet" href="{{HttpSrvBasePath "hp/-/static/pt/css/main.css"}}?v={{.sys_version_sign}}" type="text/css">
-<link rel="stylesheet" href="{{HttpSrvBasePath "hp/~/open-iconic/font/css/open-iconic-bootstrap.css"}}?v={{.sys_version_sign}}" type="text/css">
 <link rel="stylesheet" href="{{HttpSrvBasePath "hp/-/static/si/css/main.css"}}?v={{.sys_version_sign}}" type="text/css">
-<body>
-{{pagelet . "core/general" "bs4/nav-header.tpl" "topnav"}}
+<body id="hp-body">
+{{pagelet . "core/general" "v2/nav-header.tpl" "topnav"}}
 
 <style>
 .pt_node_content ._pnc_title {
   font-size: 28pt;
   line-height: 120%;
 }
-.pt_node_content ._ft_card {
-  margin: 10px 0;
-  z-index: 100 !important;
-}
-.pt_node_content .card {
-  min-height: 200px;
-}
-.pt_node_content ._ft_card a {
-  color: #fff !important;
-}
-.pt_node_content ._ft_pb_0 {
-  padding-bottom: 0 !important;
-}
-.pt_node_content .card-footer {
-  border-top: 0 !important;
-  padding: 0 1.25rem 1.25rem 1.25rem !important;
-}
-
 </style>
 
 <!-- start/ -->
-<div class="pt_index_frame_dark pt_node_content pt_bgimg_hexagons">
+<div class="hp-container-full pt_index_frame_dark pt_node_content pt_bgimg_hexagons">
 <div class="container" style="_padding: 20px 10px;text-align:center;">
   <div>
     <div class="_pnc_title">Package Center</div>
@@ -46,10 +27,10 @@
 </div>
 <!-- /start -->
 
-<div class="pt_index_frame_dark_light">
-<div class="container pt_node_content" style="padding: 20px 0;">
+<div class="hp-container-full pt_index_frame_dark_light">
+<div class="container" style="padding: 20px 0;">
   <div id="ips-infols-alert"></div>
-  <div id="ips-infols"></div>
+  <div id="ips-infols" class="columns is-multiline"></div>
   <div id="ips-infols-empty-alert" class="alert alert-warning" style="display:none">
     No more results ...
   </div>
@@ -65,25 +46,27 @@
 </div>
 
 <script id="ips-infols-th-tpl" type="text/html">
-<ul class="ips-pkginfo-tiles">
 {[~it.items :v]}
-<li class="ips-pkginfo-tile" onclick="sijs.InPackInfoView('{[=v.meta.name]}')">
-  <div class="subtitle ct-content" id="status-{[=v.meta.name]}"
-    style="background: url('{[=it._api_url]}/pkg-info/icon?name={[=v.meta.name]}&type=21&size=200') no-repeat center top; background-size: 200px 100px;">
+<div class="inpack-list-item-frame column is-3">
+<div class="inpack-list-item-box card is-hoverable" onclick="sijs.InPackInfoView('{[=v.meta.name]}')">
+  <div class="card-image">
+    <figure class="image">
+      <img src="{[=it._api_url]}/pkg-info/icon?name={[=v.meta.name]}&type=21&size=200" width="200" height="100">
+    </figure>
   </div>
-  <div class="status">
-    <div class="title">{[=v.meta.name]}</div>
-    Version: <strong>{[=v.last_version]}</strong> &nbsp;&nbsp;
+  <div class="card-content">
+    <div class="media-content inpack-list-item-box-info">
+	  <p class="title is-4">
+        {[=v.meta.name]}
+      </p>
+	  <p class="subtitle is-6">
+        Version: <strong>{[=v.last_version]}</strong>
+      </p>
+	</div>
   </div>
-</li>
+</div>
+</div>
 {[~]}
-<li class="ips-pkginfo-tile"></li>
-<li class="ips-pkginfo-tile"></li>
-<li class="ips-pkginfo-tile"></li>
-<li class="ips-pkginfo-tile"></li>
-<li class="ips-pkginfo-tile"></li>
-<li class="ips-pkginfo-tile"></li>
-</ul>
 </script>
 
 <style>
@@ -154,7 +137,7 @@
   <td class="row_title" valign="top">Packages</td>
 
   <td class="ips-ipmls">
-    <table class="table table-hover">
+    <table class="table is-fullwidth is-hoverable">
       <thead><tr>
         <th>Version</th>
         <th>Release</th>
@@ -179,7 +162,7 @@
 </table>
 </script>
     
-{{pagelet . "core/general" "footer.tpl"}}
+{{pagelet . "core/general" "v2/footer.tpl"}}
     
 <script>
 
