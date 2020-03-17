@@ -1,0 +1,15 @@
+[project]
+name = "sysinner-website"
+version = "0.1.5"
+vendor = "sysinner.com"
+homepage = "https://www.sysinner.com"
+groups = ["app/other"]
+
+[files]
+allow = """spec.json
+inpack.toml
+views/
+static/js/
+static/css/"""
+
+[scripts]

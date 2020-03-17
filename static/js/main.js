@@ -52,7 +52,7 @@ sijs.InPackInfoListRefresh = function(tplid) {
                 return l4i.InnerAlert(alert_id, 'alert-danger', "Network Error");
             }
 
-            if (info.kind != "PackageInfoList" || !info.items) {
+            if (info.kind != "PackInfoList" || !info.items) {
                 info.items = [];
             }
 
@@ -132,7 +132,7 @@ sijs.InPackInfoView = function(name) {
 
         var ep = EventProxy.create("data", "pkgs", "groups", function(data, pkgs, groups) {
 
-            if (!data || data.kind != "PackageInfo") {
+            if (!data || data.kind != "PackInfo") {
                 return;
             }
 
