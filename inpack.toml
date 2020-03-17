@@ -9,7 +9,6 @@ groups = ["app/other"]
 allow = """spec.json
 inpack.toml
 views/
-static/js/
-static/css/"""
+static/"""
 
 [scripts]
